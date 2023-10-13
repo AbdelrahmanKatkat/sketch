@@ -317,7 +317,7 @@ class SketchHelper:
         # output text in a <pre>, also on the side (on top) include a `copy` button that puts it onto clipboard
         uid = uuid.uuid4()
         b64_encoded_result = to_b64(result)
-        display(
+        return(
             HTML(
                 f"""<div style="display:flex;flex-direction:row;justify-content:space-between;">
                 <pre style="width: 100%; white-space: pre-wrap;" id="{uid}">{result}</pre>
@@ -330,7 +330,7 @@ class SketchHelper:
         result = call_prompt_on_dataframe(self._obj, ask_from_parts, question=question)
         if not call_display:
             return result
-        display(HTML(f"""{result}"""))
+        return(HTML(f"""{result}"""))
 
     def apply(self, prompt_template_string, **kwargs):
         row_limit = int(os.environ.get("SKETCH_ROW_OVERRIDE_LIMIT", "10"))
